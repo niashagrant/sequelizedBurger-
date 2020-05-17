@@ -1,11 +1,12 @@
 var express = require("express");
 
 var router = express.Router();
+var db = require("../models");
 
-var burger = require("../models/burger.js");
+// var burger = require("../models/burger.js");
 
 router.get("/", function (req, res) {
-  burger.all(function (data) {
+  db.burger.findAll({ raw: true }).then(function (data) {
     var hbsObject = {
       burger: data,
     };
@@ -15,40 +16,49 @@ router.get("/", function (req, res) {
 });
 
 router.post("/api/burger", function (req, res) {
-  burger.create(
-    ["name", "devoured"],
-    [req.body.name, req.body.devoured],
-    function (result) {
-      res.json({ id: result.insertId });
-    }
-  );
+  db.burger
+    .create({
+      name: req.body.name,
+      // devoured: req.body.devoured,
+    })
+    .then(function (result) {
+      res.json(result);
+    })
+    .catch(function (err) {
+      res.json(err);
+    });
 });
 
 router.put("/api/burger/:id", function (req, res) {
-  var condition = "id = " + req.params.id;
-  console.log("condition", condition);
-
-  burger.update({ devoured: true }, condition, function (result) {
-    if (result.changedRow == 0) {
-      return res.status(404).end();
-    } else {
-      res.status(200).end();
-    }
-  });
+  db.burger
+    .update(
+      {
+        devoured: true,
+      },
+      {
+        where: {
+          id: req.params.id,
+        },
+      }
+    )
+    .then(function (result) {
+      res.json(result);
+    })
+    .catch(function (err) {
+      res.json(err);
+    });
 });
 
 router.delete("/api/burger/:id", function (req, res) {
-  console.log("delete");
-  var condition = "id = " + req.params.id;
-  console.log("condition", condition);
-
-  burger.delete(condition, function (result) {
-    if (result.changedRow == 0) {
-      return res.status(404).end();
-    } else {
-      res.status(200).end();
-    }
-  });
+  db.burger
+    .destroy({
+      where: {
+        id: req.params.id,
+      },
+    })
+    .then(function (result) {
+      res.json(result);
+    });
 });
 
 module.exports = router;
