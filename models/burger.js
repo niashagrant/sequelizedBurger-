@@ -1,6 +1,6 @@
 module.exports = function (sequelize, DataTypes) {
   var burger = sequelize.define("burger", {
-    nane: {
+    name: {
       type: DataTypes.STRING,
       validate: {
         len: [1, 150],
