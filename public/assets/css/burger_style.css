@@ -1,0 +1,33 @@
+.jumbotron {
+  background-color: peachpuff;
+}
+
+#displayCase {
+  width: 400px;
+  height: 200px;
+  border-radius: 5px;
+}
+
+#inputDessert {
+  margin-left: 25%;
+  margin-top: 2%;
+}
+
+.card-header {
+  font-weight: 800;
+}
+
+ul {
+  list-style-type: none;
+}
+
+li {
+  font-weight: 600;
+  font-size: large;
+  font-style: oblique;
+  text-transform: uppercase;
+}
+
+#addDessert {
+  margin-right: 75%;
+}

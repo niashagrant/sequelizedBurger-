@@ -1,0 +1,34 @@
+{{!-- <li>
+    {{name}}
+    {{#unless devoured}}
+    <button class="eatDessert text-white btn btn-warning" data-devoured="{{devoured}}" data-id="{{id}}">
+        <i class="fas fa-cookie-bite"></i>
+    </button>
+    {{/unless}}
+    <button id="delete" class="btn btn-danger" data-id="{{id}}"><i class="fas fa-trash-alt"></i></button>
+</li> --}}
+
+
+
+
+
+
+<li>
+    <div class="row">
+
+
+        <div class="col-sm-6 text-right" id="dessertName">
+            {{name}}
+        </div>
+        <div class="col-sm-6">
+            {{#unless devoured}}
+            <button class="eatDessert text-white btn btn-warning" data-devoured="{{devoured}}" data-id="{{id}}"
+                data-toggle="tooltip" data-placement="top" title="Eat Dessert">
+                <i class="fas fa-cookie-bite"></i>
+            </button>
+            {{/unless}}
+            <button id="delete" class="btn btn-danger" data-id="{{id}}" data-toggle="tooltip" data-placement="top"
+                title="Remove Dessert"><i class="fas fa-trash-alt"></i></button>
+        </div>
+    </div>
+</li>
